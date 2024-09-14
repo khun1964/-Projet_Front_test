@@ -1,0 +1,192 @@
+1. Vérifiez le bon répertoire Git
+
+Assurez-vous que vous êtes bien dans le répertoire où vous avez initialisé Git. Si vous êtes dans le bon répertoire, vous devriez voir un sous-répertoire .git. Pour vérifier cela, utilisez la commande suivante :
+
+bash
+
+ls -a
+
+Cela listera tous les fichiers, y compris les fichiers cachés. 
+Vous devriez voir .git dans la liste. 
+Si vous ne voyez pas .git, cela signifie que Git n'a pas été initialisé dans 
+ce répertoire.
+
+2. Renommez ou ajustez les noms de projet
+
+Si vous avez deux répertoires avec des noms légèrement différents (par exemple, 
+localement c'est "Projet-Front-test" et sur GitHub c'est un nom différent), 
+vous avez plusieurs options :
+
+    Option 1 : Renommer le répertoire local Vous pouvez renommer le répertoire local 
+    pour qu'il corresponde au nom du dépôt sur GitHub. 
+    Cela n'affectera pas le contenu du projet, mais cela peut simplifier les choses.
+
+    bash
+
+mv Projet-Front-test -Projet_Front_test
+
+    Ensuite, vous pouvez vérifier que le répertoire a été renommé correctement :
+
+
+
+Option 2 : Garder les noms différents mais corriger les configurations Git,
+Si vous préférez garder des noms différents, assurez-vous simplement que 
+le dépôt Git local pointe vers le bon dépôt GitHub.
+
+Assurez-vous d’être dans le bon répertoire (Projet-Front-test ou votre répertoire correct) puis exécutez les commandes suivantes :
+
+bash
+
+git remote add origin https://github.com/khun1964/-Projet_Front_test
+
+
+bash
+
+    git remote remove orign
+    git remote add origin https://github.com/khun1964/-Projet_Front_test
+
+3. Validez la connexion au dépôt distant
+
+Une fois que vous avez lié correctement le dépôt local à GitHub, 
+vous pouvez vérifier que la connexion est bien établie avec la commande suivante :
+
+bash
+
+git remote -v
+
+
+Cela devrait afficher l'URL de votre dépôt distant (origin), et elle doit correspondre à l'URL de votre dépôt GitHub.
+
+4. Poursuivez avec vos commits et push
+
+Vous pouvez maintenant continuer avec vos commits et pushs, comme d'habitude :
+
+
+Naviguez dans le répertoire Projet-Front-test :
+
+bash
+
+cd Projet-Front-test
+
+Vérifiez que le dépôt Git est bien initialisé en affichant le statut du dépôt :
+
+bash
+
+git status
+
+Si tout est correct, vous devriez voir l'état des fichiers dans le dépôt Git.
+
+Ajoutez le dépôt distant (si ce n'est pas encore fait) :
+
+Comme mentionné précédemment, ajoutez correctement le dépôt distant avec la commande suivante (en corrigeant orign par origin) :
+
+bash
+
+git remote add origin https://github.com/khun1964/-Projet_Front_test
+
+bash
+
+git add .
+git commit -m "Initial commit"
+git push origin master
+
+Alternative : 
+
+Vérifiez la branche courante
+
+La branche par défaut peut ne pas être master mais quelque chose d'autre (comme main), 
+surtout avec les versions récentes de Git. 
+Vous pouvez vérifier la branche actuelle avec cette commande :
+
+bash
+
+git branch
+
+Si vous ne voyez pas master mais plutôt main ou une autre branche, 
+c'est probablement la raison de l'erreur.
+
+2. Créer ou renommer la branche master si nécessaire
+
+Si vous êtes sur une branche autre que master, vous pouvez soit renommer cette branche en master, soit créer une nouvelle branche master.
+
+    Renommer la branche actuelle en master (si vous êtes sur main par exemple) :
+
+    bash
+
+git branch -m main master
+
+Créer une nouvelle branche master et basculer dessus si elle n'existe pas :
+
+bash
+
+    git checkout -b master
+
+3. Vérifiez les fichiers suivis
+
+L'erreur "rien à valider" indique que Git ne trouve aucun fichier à suivre. 
+Assurez-vous d'avoir des fichiers dans le répertoire et qu'ils sont ajoutés avec 
+git add. 
+
+Vous pouvez vérifier quels fichiers sont suivis avec :
+
+bash
+
+git status
+
+Si vous avez déjà un dépôt distant avec des fichiers, vous pouvez essayer de
+récupérer les fichiers du dépôt distant en utilisant la commande suivante :
+
+bash
+
+git pull origin master --allow-unrelated-histories
+
+Cela peut aider à fusionner les fichiers locaux et distants.
+
+5. Vérifiez le dépôt GitHub
+
+Après avoir poussé vos modifications, vérifiez le dépôt GitHub pour vous assurer que les fichiers ont été correctement poussés. Vous devriez voir vos fichiers dans le dépôt GitHub.    
+
+Si vous avez suivi ces étapes et que vous rencontrez toujours des problèmes,
+
+vous pouvez essayer de cloner le dépôt GitHub dans un nouveau répertoire local 
+et de recommencer le processus. 
+
+Cela peut aider à résoudre les problèmes de configuration incorrecte.
+
+
+Vérifier la configuration du remote
+
+Puisque vous avez déjà un remote nommé origin, pas besoin de l'ajouter à nouveau. Mais si vous voulez vérifier qu'il pointe bien vers le bon dépôt GitHub, vous pouvez utiliser :
+
+bash
+
+git remote -v
+
+Cela doit afficher quelque chose comme :
+
+bash
+
+origin  https://github.com/khun1964/-Projet_Front_test (fetch)
+origin  https://github.com/khun1964/-Projet_Front_test (push)
+
+Si tout fonctionne bien, vos fichiers devraient être poussés sur GitHub.
+
+
+
+Si vous êtes coincé dans l'éditeur Git, 
+voici comment vous pouvez quitter en fonction de l'éditeur que vous utilisez. 
+Git utilise généralement deux éditeurs par défaut : nano ou vim.
+
+Si vous êtes dans nano :
+
+    Appuyez sur Ctrl + X pour quitter l'éditeur.
+    Git vous demandera si vous souhaitez enregistrer les modifications. Appuyez sur Y pour accepter.
+    Appuyez sur Enter pour confirmer et quitter.
+
+Si vous êtes dans vim :
+
+    Appuyez sur la touche Esc pour vous assurer que vous êtes en mode commande.
+    Tapez :wq puis appuyez sur Enter pour enregistrer et quitter.
+        Si vous ne souhaitez pas enregistrer les modifications, tapez :q! puis Enter
+        pour quitter sans enregistrer.
+
